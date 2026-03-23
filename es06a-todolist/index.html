@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Todo List - JSON Exercise</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- ========================================
+             HEADER - Titolo Applicazione
+             ======================================== -->
+        <header>
+            <h1>📝 My Todo List</h1>
+            <p class="subtitle">Gestisci le tue attività con JSON e LocalStorage</p>
+        </header>
+
+        <!-- ========================================
+             FORM - Aggiungi Nuova Task
+             ======================================== -->
+        <section class="add-todo-section">
+            <h2>➕ Aggiungi Task</h2>
+            <div class="add-todo-form">
+                <!-- Input Titolo (OBBLIGATORIO) -->
+                <input 
+                    type="text" 
+                    id="todoTitle" 
+                    class="todo-input"
+                    placeholder="Titolo task (obbligatorio)..." 
+                    maxlength="100"
+                    autocomplete="off"
+                />
+                
+                <!-- Textarea Descrizione (OPZIONALE) -->
+                <textarea 
+                    id="todoDescription" 
+                    class="todo-textarea"
+                    placeholder="Descrizione (opzionale)..." 
+                    rows="3"
+                    maxlength="500"
+                ></textarea>
+                
+                <!-- Pulsante Aggiungi -->
+                <button 
+                    id="addBtn" 
+                    class="btn btn-primary"
+                    type="button"
+                >
+                    ➕ Aggiungi Task
+                </button>
+            </div>
+        </section>
+
+        <!-- ========================================
+             FILTRI - Tutte / Attive / Completate
+             ======================================== -->
+        <section class="filters-section">
+            <h2>🔍 Filtri</h2>
+            <div class="filters">
+                <!-- 
+                    IMPORTANTE: data-filter è usato da JavaScript per identificare il tipo di filtro
+                    - "all": Mostra tutte le task
+                    - "active": Mostra solo task non completate
+                    - "completed": Mostra solo task completate
+                -->
+                <button 
+                    class="filter-btn active" 
+                    data-filter="all"
+                    type="button"
+                >
+                    📋 Tutte
+                </button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="active"
+                    type="button"
+                >
+                    ⏳ Attive
+                </button>
+                <button 
+                    class="filter-btn" 
+                    data-filter="completed"
+                    type="button"
+                >
+                    ✅ Completate
+                </button>
+            </div>
+        </section>
+
+        <!-- ========================================
+             LISTA TASK - Container Dinamico
+             ======================================== -->
+        <section class="todo-list-section">
+            <h2>📝 Le Mie Task</h2>
+            <div id="todoList" class="todo-list">
+                <!-- 
+                    Le task vengono inserite qui dinamicamente da JavaScript
+                    Struttura di una singola task (generata da createTodoElement()):
+                    
+                    <div class="todo-item [completed]" data-id="1">
+                        <input type="checkbox" class="todo-checkbox" [checked]>
+                        <div class="todo-content">
+                            <h3 class="todo-title">Titolo task</h3>
+                            <p class="todo-description">Descrizione...</p>
+                            <small class="todo-date">14/03/2024, 10:30</small>
+                        </div>
+                        <div class="todo-actions">
+                            <button class="btn-delete">🗑️ Elimina</button>
+                        </div>
+                    </div>
+                -->
+                
+                <!-- Messaggio iniziale (verrà sostituito da JavaScript) -->
+                <p class="empty-message">
+                    🎯 Aggiungi la tua prima task per iniziare!
+                </p>
+            </div>
+        </section>
+
+        <!-- ========================================
+             FOOTER - Contatore e Info
+             ======================================== -->
+        <footer class="app-footer">
+            <!-- Contatore Task Attive -->
+            <div class="counter">
+                <span id="activeCount">0 task attive</span>
+            </div>
+            
+            <!-- Info Sviluppatore (opzionale) -->
+            <div class="dev-info">
+                <small>
+                    💾 Dati salvati automaticamente in LocalStorage |
+                    🔄 Aggiorna la pagina per verificare la persistenza
+                </small>
+            </div>
+        </footer>
+
+        <!-- ========================================
+             DEBUG PANEL (opzionale - per testing)
+             ======================================== -->
+        <!-- 
+        <section class="debug-panel">
+            <h3>🐛 Debug Panel</h3>
+            <button onclick="console.log('Todos:', todosData)">Log Dati</button>
+            <button onclick="console.log('LocalStorage:', localStorage.getItem('todoListData'))">Log Storage</button>
+            <button onclick="localStorage.clear(); location.reload()">Reset App</button>
+        </section>
+        -->
+    </div>
+
+    <!-- ========================================
+         JAVASCRIPT - Logica Applicazione
+         ======================================== -->
+    <script src="app.js"></script>
+    <!-- 
+        NOTA IMPORTANTE:
+        Il file app.js deve essere l'ultimo elemento prima della chiusura </body >
+        per garantire che tutto l'HTML sia caricato prima dell'esecuzione dello script 
+    -->
+</body>
+</html>
